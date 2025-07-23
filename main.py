@@ -93,8 +93,7 @@ def handle_chat_session(guidelines: Dict[str, Any]) -> None:
         if USE_RICH:
             console.print("\n[bold cyan]Enter your question or patient information:[/bold cyan]")
         else:
-            print("\nEnter your question or patient information:")
-        
+            print("\nEnter your question or patient information:")        
         input_text = input().strip()
         
         # Check for exit command
@@ -163,7 +162,7 @@ def main() -> int:
         print("Heart Failure Guidelines Recommendation System")
         print("="*80)
 
-    # Check API key
+    # Check if API key is set
     if not os.environ.get("OPENAI_API_KEY"):
         if USE_RICH:
             console.print("[bold red]OpenAI API key is not set. Please set the OPENAI_API_KEY environment variable.[/bold red]")
