@@ -19,15 +19,14 @@ from text_extractor import extract_patient_data
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-# Load environment variables
-load_dotenv()
-
-# Initialize OpenAI client
+# Fetch OpenAI API key from environment variables
 api_key = os.getenv("OPENAI_API_KEY")
 if not api_key:
-    raise ValueError("OPENAI_API_KEY not found in environment variables. Please set it in .env file.")
+    logger.error("OPENAI_API_KEY not found in environment variables. Please set it.")
+    raise ValueError("OPENAI_API_KEY not found in environment variables.")
 
-client = OpenAI(api_key=api_key)
+# Set OpenAI API key
+openai.api_key = api_key
 
 def generate_recommendation(patient_input: str, guidelines: Dict[str, Any], conversation_history: List[Dict[str, str]] = None) -> str:
     """Generate recommendation based on patient input and guidelines."""
